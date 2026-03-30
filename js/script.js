@@ -1,6 +1,6 @@
 console.log("script.js loaded");
-const endpoint = "https://api.giphy.com/v2/emoji?api_key=vLSqUN5pBTeITSKK0AgohJgEofbxQTXW&limit=10&offset=0"
-async function fetchGifs() {
+const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=vLSqUN5pBTeITSKK0AgohJgEofbxQTXW&q=${searchTerm}&limit=12`;
+async function fetchGifs(searchTerm) {
     const response = await fetch(endpoint);
     const data = await response.json();
 
@@ -14,10 +14,12 @@ async function fetchGifs() {
 }
 const gifContainer = document.querySelector("#gif-container");
 const button = document.querySelector("#fetch-gif-btn");
+const input = document.querySelector("#search-input");
 button.addEventListener("click", async () => {
     gifContainer.innerHTML = ""; 
 
-    const images = await fetchGifs();
+    const images = await fetchGifs(searchTer,);
+    const searchTerm = input.value;
 
     images.forEach(url => {
         gifContainer.innerHTML += `<img src="${url}" class="col-3 mb-3">`;
