@@ -12,3 +12,14 @@ async function fetchGifs() {
 
     return images;
 }
+const gifContainer = document.querySelector("#gif-container");
+const button = document.querySelector("#fetch-gif-btn");
+button.addEventListener("click", async () => {
+    gifContainer.innerHTML = ""; 
+
+    const images = await fetchGifs();
+
+    images.forEach(url => {
+        gifContainer.innerHTML += `<img src="${url}" class="col-3 mb-3">`;
+    });
+});
